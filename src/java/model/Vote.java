@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Vote.findAll", query = "SELECT l FROM Vote l")
     , @NamedQuery(name = "Vote.findById", query = "SELECT l FROM Vote l WHERE l.id = :id")
     , @NamedQuery(name = "Vote.findByCreatedOn", query = "SELECT l FROM Vote l WHERE l.createdOn = :createdOn")})
+@XmlRootElement
 public class Vote implements Serializable {
 
     private static final long serialVersionUID = 1L;

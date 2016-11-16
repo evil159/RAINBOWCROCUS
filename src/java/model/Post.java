@@ -36,6 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Post.findAll", query = "SELECT p FROM Post p")
     , @NamedQuery(name = "Post.findById", query = "SELECT p FROM Post p WHERE p.id = :id")
     , @NamedQuery(name = "Post.findByImageUrl", query = "SELECT p FROM Post p WHERE p.imageUrl = :imageUrl")})
+@XmlRootElement
 public class Post implements Serializable {
 
     private static final long serialVersionUID = 1L;
