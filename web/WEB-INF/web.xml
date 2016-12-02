@@ -9,22 +9,9 @@
             <param-value>service</param-value>
         </init-param>
     </servlet>
-    <servlet>
-        <servlet-name>AuthService</servlet-name>
-        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
-        <init-param>
-            <param-name>jersey.config.server.provider.packages</param-name>
-            <param-value>auth</param-value>
-        </init-param>
-    </servlet>
-
     <servlet-mapping>
         <servlet-name>HSRestServices</servlet-name>
         <url-pattern>/rest/*</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AuthService</servlet-name>
-        <url-pattern>/auth/*</url-pattern>
     </servlet-mapping>
 
     <session-config>
@@ -32,38 +19,4 @@
             30
         </session-timeout>
     </session-config>
-    
-    <login-config>
-        <auth-method>FORM</auth-method>
-        <realm-name>testRealm</realm-name>
-        <form-login-config>
-            <form-login-page>/login/login.jsp</form-login-page>
-            <form-error-page>/login/error.jsp</form-error-page>
-        </form-login-config>
-    </login-config>
-    
-    <security-constraint>
-        
-        <web-resource-collection>
-            <web-resource-name>Secured Content</web-resource-name>
-            <url-pattern>/rest/*</url-pattern>
-        </web-resource-collection>
-    
-        <auth-constraint>
-            <role-name>ADMINISTRATOR</role-name>
-            <role-name>USER</role-name>
-        </auth-constraint>
-    
-    </security-constraint>
-    
-    <security-role>
-        <role-name>ADMINISTRATOR</role-name>
-    </security-role>
-    <security-role>
-        <role-name>USER</role-name>
-    </security-role>
-    <security-role>
-        <role-name>DEFAULT</role-name>
-    </security-role>
-    
 </web-app>
