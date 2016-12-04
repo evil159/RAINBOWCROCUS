@@ -9,10 +9,31 @@
             <param-value>service</param-value>
         </init-param>
     </servlet>
+    <servlet>
+        <servlet-name>AuthService</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>jersey.config.server.provider.packages</param-name>
+            <param-value>auth</param-value>
+        </init-param>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HSRestServices</servlet-name>
         <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AuthService</servlet-name>
+        <url-pattern>/auth/*</url-pattern>
+    </servlet-mapping>
+
+    <filter>
+        <filter-name>authFilter</filter-name>
+        <filter-class>auth.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>authFilter</filter-name>
+        <url-pattern>/rest/*</url-pattern>
+    </filter-mapping>
 
     <session-config>
         <session-timeout>
