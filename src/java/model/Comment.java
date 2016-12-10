@@ -6,6 +6,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -24,6 +25,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -48,7 +50,6 @@ public class Comment implements Serializable {
     @Column(name = "content")
     private String content;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "createdOn")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdOn;
@@ -60,6 +61,7 @@ public class Comment implements Serializable {
     private Post post;
 
     public Comment() {
+        createdOn = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
     }
 
     public Comment(Integer id) {
@@ -95,6 +97,7 @@ public class Comment implements Serializable {
         this.createdOn = createdOn;
     }
 
+    @XmlTransient
     public User getAuthor() {
         return author;
     }
@@ -103,6 +106,7 @@ public class Comment implements Serializable {
         this.author = author;
     }
 
+    @XmlTransient
     public Post getPost() {
         return post;
     }

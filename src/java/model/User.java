@@ -6,6 +6,7 @@
 package model;
 
 import java.io.Serializable;
+import java.sql.Blob;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -15,6 +16,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -50,6 +52,12 @@ public class User implements Serializable {
     @Size(min = 1, max = 32)
     @Column(name = "username")
     private String username;
+    @Size(max = 30)
+    @Column(name = "email")
+    private String email;
+    @Size(max = 20)
+    @Column(name = "phone")
+    private String phone;
     @Size(max = 64)
     @Column(name = "displayName")
     private String displayName;
@@ -58,6 +66,10 @@ public class User implements Serializable {
     @Size(min = 1, max = 128)
     @Column(name = "password")
     private String password;
+    @XmlTransient
+    @Column(name = "image")
+    @Lob
+    private byte[] image;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "author", fetch = FetchType.LAZY)
     private Collection<Comment> comments;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "author", fetch = FetchType.LAZY)
@@ -110,6 +122,30 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public byte[] getImage() {
+        return image;
+    }
+    
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    
     @XmlTransient
     public Collection<Comment> getComments() {
         return comments;
@@ -128,7 +164,6 @@ public class User implements Serializable {
         this.likes = likes;
     }
 
-    @XmlTransient
     public Collection<Post> getPosts() {
         return posts;
     }

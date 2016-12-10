@@ -18,6 +18,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import model.User;
 
 /**
@@ -83,6 +84,13 @@ public class UserFacadeREST extends AbstractFacade<User> {
         return String.valueOf(super.count());
     }
     
+    @GET
+    @Path("avatar/{id}")
+    @Produces({"image/png"})
+    public Response getAvatar(@PathParam("id") Integer id) {
+        return Response.ok(find(id).getImage()).build();
+    }
+        
     public User findBy(String username, String password) {
         
         try {

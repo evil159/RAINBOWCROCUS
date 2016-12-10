@@ -7,6 +7,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Calendar;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,6 +22,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -41,8 +43,6 @@ public class Vote implements Serializable {
     @NotNull
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "createdOn")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdOn;
@@ -54,6 +54,7 @@ public class Vote implements Serializable {
     private Post post;
 
     public Vote() {
+        createdOn = new Date(Calendar.getInstance().getTimeInMillis());
     }
 
     public Vote(Integer id) {
@@ -81,6 +82,7 @@ public class Vote implements Serializable {
         this.createdOn = createdOn;
     }
 
+    @XmlTransient
     public User getAuthor() {
         return author;
     }
@@ -89,6 +91,7 @@ public class Vote implements Serializable {
         this.author = author;
     }
 
+    @XmlTransient
     public Post getPost() {
         return post;
     }

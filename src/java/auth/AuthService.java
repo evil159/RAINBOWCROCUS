@@ -5,6 +5,9 @@
  */
 package auth;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -27,7 +30,7 @@ import javax.ws.rs.core.Response;
 import model.User;
 import service.UserFacadeREST;
 
-import org.apache.commons.codec.digest.DigestUtils;
+import org.glassfish.jersey.media.multipart.FormDataParam;
 
 /**
  *
@@ -69,10 +72,14 @@ public class AuthService {
     @Path("register")
     @Produces(MediaType.APPLICATION_JSON)
     @TransactionAttribute(TransactionAttributeType.NEVER)
-    public Response register(@FormParam("username") String username,
-            @FormParam("displayName") String displayName,
-            @FormParam("password1") String password1,
-            @FormParam("password2") String password2,
+    @Consumes({MediaType.APPLICATION_FORM_URLENCODED, MediaType.MULTIPART_FORM_DATA})
+    public Response register(@FormDataParam("username") String username,
+            @FormDataParam("displayName") String displayName,
+            @FormDataParam("email") String email,
+            @FormDataParam("phone") String phone,
+            @FormDataParam("password1") String password1,
+            @FormDataParam("password2") String password2,
+            @FormDataParam("avatar") InputStream imageStream,
             @Context HttpServletRequest req) {
 
         if (password1.isEmpty() || !password1.equals(password2)) {
@@ -84,7 +91,22 @@ public class AuthService {
         user.setUsername(username);
         user.setPassword(password1);
         user.setDisplayName(displayName);
-
+        user.setEmail(email);
+        user.setPhone(phone);
+        
+        try {
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            int read = 0;
+            byte[] bytes = new byte[1024];
+            while ((read = imageStream.read(bytes)) != -1) {
+                out.write(bytes, 0, read);
+            }
+            
+            user.setImage(out.toByteArray());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
         userBean.create(user);
 
         return login(username, password1, req);

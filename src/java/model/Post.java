@@ -6,6 +6,8 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.Calendar;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -22,6 +24,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -34,8 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "Post")
 @NamedQueries({
     @NamedQuery(name = "Post.findAll", query = "SELECT p FROM Post p")
-    , @NamedQuery(name = "Post.findById", query = "SELECT p FROM Post p WHERE p.id = :id")
-    , @NamedQuery(name = "Post.findByImageUrl", query = "SELECT p FROM Post p WHERE p.imageUrl = :imageUrl")})
+    , @NamedQuery(name = "Post.findById", query = "SELECT p FROM Post p WHERE p.id = :id")})
 @XmlRootElement
 public class Post implements Serializable {
 
@@ -45,12 +48,16 @@ public class Post implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 255)
-    @Column(name = "imageUrl")
-    private String imageUrl;
     @Size(max = 65535)
     @Column(name = "caption")
     private String caption;
+    @Column(name = "created")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
+    @XmlTransient
+    @Column(name = "image")
+    @Lob
+    private byte[] image;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post", fetch = FetchType.LAZY)
     private Collection<Comment> comments;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post", fetch = FetchType.LAZY)
@@ -60,6 +67,7 @@ public class Post implements Serializable {
     private User author;
 
     public Post() {
+        created = new Date(Calendar.getInstance().getTimeInMillis());
     }
 
     public Post(Integer id) {
@@ -74,14 +82,6 @@ public class Post implements Serializable {
         this.id = id;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
     public String getCaption() {
         return caption;
     }
@@ -90,7 +90,22 @@ public class Post implements Serializable {
         this.caption = caption;
     }
 
-    @XmlTransient
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
     public Collection<Comment> getComments() {
         return comments;
     }
@@ -99,7 +114,6 @@ public class Post implements Serializable {
         this.comments = comments;
     }
 
-    @XmlTransient
     public Collection<Vote> getVotes() {
         return votes;
     }
@@ -108,6 +122,7 @@ public class Post implements Serializable {
         this.votes = votes;
     }
 
+    @XmlTransient
     public User getAuthor() {
         return author;
     }
