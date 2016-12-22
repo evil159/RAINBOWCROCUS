@@ -1,65 +1,468 @@
-<!doctype html>
-<html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>We Share</title>
+    <link rel="icon" href="assets/imaces/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css">
+    <script src="assets/scripts/jquery-1.10.2.min.js"></script>
 
-        <link rel="stylesheet" href="css/normalize.min.css">
-        <link rel="stylesheet" href="css/main.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="assets/css/jquery-ui.css">
 
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-    </head>
-    <body>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="assets/scripts/bootstrap.min.js"></script>
+    <script src="assets/scripts/gest.js"></script>
+    <script src="assets/scripts/gest.min.js"></script>
+    <script type="text/javascript" src="assets/scripts/jquery.touchSwipe.min.js"></script>
 
-    <header>
-        <h3>RAINBOWCROCUS</h3>
-        <img src="favicon.ico">
-    </header>
-    <main>
-        <article>
-            <figure>
-                <img src="tile.png" width="50%" height="50%">
-                <figcaption>
-                    <h4>Post caption</h4>
-                </figcaption>
-            </figure>
+    <script type="text/javascript" src="https://raw.githubusercontent.com/yairEO/touchy/master/jquery.touch.js"></script>
 
-            <section class="likes">
-                <p>♥︎<b>15</b> Xxx and 3 others like your post</p>
-            </section>
-            <section class="comments">
-                <div class="comment">
-                    <h5>Xxx</h5>
-                    <p>Nice picture 👍</p>
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">
+        <div class="container-fluid">
+        <div class="col-md-7 col-md-offset-2">
+            <div id="nav-head" class="navbar-header">
+                <b>WeShare</b>
+            </div>
+            <div class="mp-navbar-right">
+                <div class="sidebar-show">
+                    <div class="sidebar-show-animation" style="transform: rotate(0deg)">
+                        <div class="line firstline" style="width: 20px; transform: rotate(-0deg) translate(0px, 0px);"></div>
+                        <div class="line secondline" style="width: 20px;"></div>
+                        <div class="line thirdline" style="width: 20px; transform: rotate(0deg) translate(0px, 0px);"></div>
+                    </div>
                 </div>
-            </section>
-        </article>
-    </main>
-    <nav>
-        <a href="#">Feed</a>
-        <a href="#">Photo</a>
-        <a href="#">Search</a>
-    </nav>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; overflow: hidden; z-index: 1">
+        <div style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; overflow: auto; transition: -webkit-left 0.3s ease-out, right 0.3s ease-out">
+            <div class="mp-cabinet" style="padding-top: 70px">
+                <img class="background" src="assets/images/background.jpg">
+                <div class="btn-take-picture-container">
+                  <div id="left-line" style="height: 5px;width: 247px; background-color: #23ede9; float: left; margin-top: 35.5px"></div>
+                  <div id="right-line" style="height: 5px;width: 247px; background-color: #23ede9; float: right; margin-top: 35.5px"></div>
+                  <div class="btn-take-picture"></div>
+                </div>
+                <div class="cabinet-container">
 
+<!--=====================================================
+          HOME PAGE
+=========================================================-->
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+                <div id="home" class="cabinet-container-item active">
+                  <div class="page-container">
+                      <article>
+                          <div class="post-header">
+                              <a href="#home">
+                                  <i class="glyphicon-custom glyphicon glyphicon-user"></i>
+                                  <span class="username" style="padding-bottom: 10px;"><b>liam1208</b></span>
+                              </a>
+                              <div class="post-time">
+                                  <span>2h ago</span>
+                              </div>
+                          </div>
+                          <div class="post-body">
+                              <div class="post-caption">
+                                  <span>Feels like a little bit boring with these</span>
+                              </div>
+                              <div class="post-image-container">
+                                  <img src="assets/images/heart.jpg" style="transition: opacity 0.8s ease-in-out">
+                              </div>
+                          </div>
+                          <div class="post-footer">
+                              <div>
+                                  <img src="assets/images/heart_empty.png" height="25px" onclick="this.src='assets/images/heart_fill.png'"/>
+                                  <span>6.9k likes</span>
+                                  <p><b>superstar123</b> Why is this a heart?</p>
+                                  <p><b>superstar123</b> And why did 6.9k ppl like this?</p>
+                              </div>
+                              <form action="#" method="POST">
+                                  <textarea name="cmtbox" style="width: 85%; float:left;">Your comment</textarea>
+                                  <i class="glyphicon glyphicon-send"></i>
+                              </form>
+                          </div>
+                      </article>
 
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
+                      <article>
+                          <div class="post-header">
+                              <a href="#home">
+                                  <i class="glyphicon-custom glyphicon glyphicon-user"></i>
+                                  <span class="username" style="padding-bottom: 10px;"><b>superstar123</b></span>
+                              </a>
+                              <div class="post-time">
+                                  <span>3h ago</span>
+                              </div>
+                          </div>
+                          <div class="post-body">
+                              <div class="post-caption">
+                                  <span>Audi A7...4 more years</span>
+                              </div>
+                              <div class="post-image-container">
+                                  <img src="assets/images/photo4.jpg">
+                              </div>
+                          </div>
+                          <div class="post-footer">
+                              <div>
+                                  <img src="assets/images/heart_empty.png" height="25px" onclick="this.src='assets/images/heart_fill.png'"/>
+                                  <span>4.6k likes</span>
+                                  <p><b>liam1208</b> This picture looks familiar</p>
+                                  <p><b>superstar123</b> Probably because you've seen this a million times.</p>
+                              </div>
+                              <form action="#" method="POST">
+                                  <textarea name="cmtbox" style="width: 85%; float:left;">Your comment</textarea>
+                                  <i class="glyphicon glyphicon-send"></i>
+                              </form>
+                          </div>
+                      </article>
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
-        </script>
-    </body>
+                      <article>
+                          <div class="post-header">
+                              <a href="#home">
+                                  <i class="glyphicon-custom glyphicon glyphicon-user"></i>
+                                  <span class="username" style="padding-bottom: 10px;"><b>melted_elsa</b></span>
+                              </a>
+                              <div class="post-time">
+                                  <span>6h ago</span>
+                              </div>
+                          </div>
+                          <div class="post-body">
+                              <div class="post-caption">
+                                  <span>Mercedes Benz Cls...8 more years</span>
+                              </div>
+                              <div class="post-image-container">
+                                  <img src="assets/images/photo5.jpg">
+                              </div>
+                          </div>
+                          <div class="post-footer">
+                              <div>
+                                  <img src="assets/images/heart_empty.png" height="25px" onclick="this.src='assets/images/heart_fill.png'"/>
+                                  <span>1.6k likes</span>
+                                  <p><b>melted_elsa</b> Chill</p>
+                              </div>
+                              <form action="#" method="POST">
+                                  <textarea name="cmtbox" style="width: 85%; float:left;">Your comment</textarea>
+                                  <i class="glyphicon glyphicon-send"></i>
+                              </form>
+                          </div>
+                      </article>
+
+                      <article>
+                          <div class="post-header">
+                              <a href="#home">
+                                  <i class="glyphicon-custom glyphicon glyphicon-user"></i>
+                                  <span class="username" style="padding-bottom: 10px;"><b>Liam_Nguyen</b></span>
+                              </a>
+                              <div class="post-time">
+                                  <span>12h ago</span>
+                              </div>
+                          </div>
+                          <div class="post-body">
+                              <div class="post-caption">
+                                  <span>Range Rover Sport...maybe later :D</span>
+                              </div>
+                              <div class="post-image-container" style="height: 270px !important">
+                                  <img src="assets/images/photo6.jpeg">
+                              </div>
+                          </div>
+                          <div class="post-footer">
+                              <div>
+                                  <img src="assets/images/heart_empty.png" height="25px" onclick="this.src='assets/images/heart_fill.png'"/>
+                                  <span>10.2k likes</span>
+                                  <p><b>roman_evil</b> Good luck ;)</p>
+                              </div>
+                              <form action="#" method="POST">
+                                  <textarea name="cmtbox" style="width: 85%; float:left;">Your comment</textarea>
+                                  <i class="glyphicon glyphicon-send"></i>
+                              </form>
+                          </div>
+                      </article>
+
+                      <article>
+                          <div class="post-header">
+                              <a href="#home">
+                                  <i class="glyphicon-custom glyphicon glyphicon-user"></i>
+                                  <span class="username" style="padding-bottom: 10px;"><b>John Smith</b></span>
+                              </a>
+                              <div class="post-time">
+                                  <span>1d ago</span>
+                              </div>
+                          </div>
+                          <div class="post-body">
+                              <div class="post-caption">
+                                  <span>Home :]</span>
+                              </div>
+                              <div class="post-image-container" style="height: 270px !important">
+                                  <img src="assets/images/photo7.jpg">
+                              </div>
+                          </div>
+                          <div class="post-footer">
+                              <div>
+                                  <img src="assets/images/heart_empty.png" height="25px" onclick="this.src='assets/images/heart_fill.png'"/>
+                                  <span>7.2b likes</span>
+                                  <p><b>earthling</b> Wow! Beautiful.</p>
+                              </div>
+                              <form action="#" method="POST">
+                                  <textarea name="cmtbox" style="width: 85%; float:left;">Your comment</textarea>
+                                  <i class="glyphicon glyphicon-send"></i>
+                              </form>
+                          </div>
+                      </article>
+
+                      <article>
+                          <div class="post-header">
+                              <a href="#home">
+                                  <i class="glyphicon-custom glyphicon glyphicon-user"></i>
+                                  <span class="username" style="padding-bottom: 10px;"><b>Timoteus Aelius</b></span>
+                              </a>
+                              <div class="post-time">
+                                  <span>1d ago</span>
+                              </div>
+                          </div>
+                          <div class="post-body">
+                              <div class="post-caption">
+                                  <span>An elephant</span>
+                              </div>
+                              <div class="post-image-container" style="height: 270px !important">
+                                  <img src="assets/images/photo8.jpg">
+                              </div>
+                          </div>
+                          <div class="post-footer">
+                              <form action="#" method="POST">
+                                  <textarea name="cmtbox" style="width: 85%; float:left;">Your comment</textarea>
+                                  <i class="glyphicon glyphicon-send"></i>
+                              </form>
+                          </div>
+                      </article>
+
+                      <article>
+                          <div class="post-header">
+                              <a href="#home">
+                                  <i class="glyphicon-custom glyphicon glyphicon-user"></i>
+                                  <span class="username" style="padding-bottom: 10px;"><b>Hildefons Severus</b></span>
+                              </a>
+                              <div class="post-time">
+                                  <span>2d ago</span>
+                              </div>
+                          </div>
+                          <div class="post-body">
+                              <div class="post-caption">
+                                  <span>Moody</span>
+                              </div>
+                              <div class="post-image-container" style="height: 270px !important">
+                                  <img src="assets/images/photo9.jpg">
+                              </div>
+                          </div>
+                          <div class="post-footer">
+                              <form action="#" method="POST">
+                                  <textarea name="cmtbox" style="width: 85%; float:left;">Your comment</textarea>
+                                  <i class="glyphicon glyphicon-send"></i>
+                              </form>
+                          </div>
+                      </article>
+
+                    </div>
+                  </div>
+
+<!--=====================================================
+      UPLOAD PAGE
+=========================================================-->
+                    <div id="upload" class="cabinet-container-item">
+                        <div class="page-container" style="text-align: center">
+                            <form id="upload" action="#" method="POST">
+                                <p style="width: 100%; text-align: left;">Choose a file to upload:</p>
+                                <input type="file" name="imageUpload"/><br/>
+                                <textarea name="imageCaption">Write a caption here</textarea>
+                                <input type="submit" value="Upload" style="margin: auto"/>
+                            </form>
+                        </div>
+                    </div>
+
+<!--=====================================================
+      NOTIFICATION PAGE
+=========================================================-->
+
+                    <div id="notification" class="cabinet-container-item">
+                        <div class="page-container">
+                            <article class="notification">
+                                <a class="notification-post" href="#">
+                                    <img src="assets/images/account.png" alt="Avatar" class="notification-center-item"/>
+                                    <div class="notification-center-item">
+                                        <p style="vertical-align: middle;">liam1208 liked your photo</p>
+                                    </div>
+                                    <div style="height: 50px; float: right;"> <img src="assets/images/photo6.jpeg" height="40px" alt="Picture" style="margin: 3px 2px 3px 0px"/></div>
+                                </a>
+                            </article>
+
+                            <article class="notification">
+                                <a class="notification-post" href="#">
+                                    <img src="assets/images/account.png" alt="Avatar" class="notification-center-item"/>
+                                    <div class="notification-center-item">
+                                        <p style="vertical-align: middle;">superstar123 liked your photo</p>
+                                    </div>
+                                    <div style="height: 50px; float: right;"> <img src="assets/images/photo5.jpg" height="40px" alt="Picture" style="margin: 3px 2px 3px 0px"/></div>
+                                </a>
+                            </article>
+
+                            <article class="notification">
+                                <a class="notification-post" href="#">
+                                    <img src="assets/images/account.png" alt="Avatar" class="notification-center-item"/>
+                                    <div class="notification-center-item">
+                                        <p style="vertical-align: middle;">roman_evil commented on your photo</p>
+                                    </div>
+                                    <div style="height: 50px; float: right;"> <img src="assets/images/photo6.jpeg" height="40px" alt="Picture" style="margin: 3px 2px 3px 0px"/></div>
+                                </a>
+                            </article>
+
+                            <article class="notification">
+                                <a class="notification-post" href="#">
+                                    <img src="assets/images/account.png" alt="Avatar" class="notification-center-item"/>
+                                    <div class="notification-center-item">
+                                        <p style="vertical-align: middle;">melted_elsa liked your photo</p>
+                                    </div>
+                                    <div style="height: 50px; float: right;"> <img src="assets/images/photo3.png" height="40px" alt="Picture" style="margin: 3px 2px 3px 0px"/></div>
+                                </a>
+                            </article>
+                        </div>
+                    </div>
+
+<!--=====================================================
+      PROFILE PAGE
+=========================================================-->
+
+                    <div id="profile" class="cabinet-container-item">
+                      <div class="page-container profile-page-container">
+                        <div class="row">
+                          <div class="profile-picture-container">
+                            <img src="assets/images/photo3.png" style="width: 70px; height: 70px; position: relative;">
+                          </div>
+                          <div class="name-container">
+                            <span id="lbl_Name">Nguyen Thien Phuc</span>
+                          </div>
+                          <div class="btn-edit-profile">
+                            <i class="glyphicon-custom glyphicon glyphicon-pencil" style="font-size: 1.0em"></i>
+                          </div>
+                        </div>
+                        <div class="row" style="margin-top: 10px;">
+                          <div class="info-container panel">
+                            <div class="info-head">Posts</div>
+                            <div class="info-content">15</div>
+                          </div> 
+                        </div>
+                        <div class="row" style="margin-top: 5px;">
+                          <div class="posted-image">
+                            <div class="image-row" style="margin-bottom: 4px;">
+                              <img src="assets/images/heart.jpg" style=" position: relative; box-shadow: rgba(0, 0, 0, 0.14902) 2px 2px 4px;">
+                              <img src="assets/images/photo4.jpg" style=" position: relative; box-shadow: rgba(0, 0, 0, 0.14902) 2px 2px 4px;">
+                              <img src="assets/images/photo5.jpg" style=" position: relative; box-shadow: rgba(0, 0, 0, 0.14902) 2px 2px 4px;">
+                            </div>
+                            <div class="image-row" style="margin-bottom: 4px;">
+                              <img src="assets/images/photo6.jpeg" style=" position: relative; box-shadow: rgba(0, 0, 0, 0.14902) 2px 2px 4px;">
+                              <img  style=" position: relative; box-shadow: rgba(0, 0, 0, 0.14902) 2px 2px 4px;">
+                              <img  style=" position: relative; box-shadow: rgba(0, 0, 0, 0.14902) 2px 2px 4px;">
+                            </div>
+                          
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+<!--=====================================================
+      EDIT PROFILE PAGE
+=========================================================-->
+
+                    <div id="edit-profile" class="cabinet-container-item">
+                      <div class="page-container profile-page-container">
+                        <div style="background-color: yellow; width: 70px; height: 70px; margin-right: auto; margin-left: auto;">
+                          <img src="assets/images/photo3.png" style="width: 70px; height: 70px;">
+                        </div>
+                        <div style="text-align: center; font-size: 12px"><span>Edit profile picture</span></div>
+                        <div class="input-group profile-input-group">
+                            <label class="control-label"><b>Display Name</b></label>
+                            <input data-role="none" type="text" id="txt_DisplayName" placeholder="Your display name" class="form-control form-control-custom edit-profile-form" aria-describedby="helpblock_DisplayName">
+                            <span id="helpblock_DisplayName" class="help-block hidden" style="color:red">Display Name empty</span>
+                        </div>
+                        <div class="input-group profile-input-group">
+                            <label class="control-label"><b>Email</b></label>
+                            <input data-role="none" type="text" id="txt_Email" placeholder="Your email" class="form-control form-control-custom edit-profile-form" aria-describedby="helpblock_Email">
+                            <span id="helpblock_Email" class="help-block hidden" style="color:red">Display Name empty</span>
+                        </div>
+                        <div class="input-group profile-input-group">
+                            <label class="control-label"><b>Phone number</b></label>
+                            <input data-role="none" type="text" id="txt_PhoneNumber" placeholder="Your phone number" class="form-control form-control-custom edit-profile-form" aria-describedby="helpblock_PhoneNumber">
+                            <span id="helpblock_PhoneNumber" class="help-block hidden" style="color:red">Display Name empty</span>
+                        </div>
+                        <div class="input-group profile-input-group">
+                          <label class="control-label"><b>Gender</b></label>
+                          <select id="cmb_Gender" class="form-control form-control-custom edit-profile-form" data-role="none">
+                            <option>Male</option>
+                            <option>Female</option>
+                          </select>
+                          <span id="helpblock_Gender" class="help-block hidden" style="color:red">Display Name empty</span>
+                        </div>
+                        <div class="input-group profile-input-group">
+                          <label class="control-label"><b>DOB</b></label>
+                          <input data-role="none" type="text" id="txt_Dob" placeholder="Your display name" class="form-control form-control-custom edit-profile-form" aria-describedby="helpblock_Dob">
+                          <span id="helpblock_Dob" class="help-block hidden" style="color:red">Display Name empty</span>
+                        </div>
+                        <button class="btn btn-primary" id="btn_ProfileSave" style="margin-top: 20px">Update</button>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="presentation" role="presentation" tabindex="0" style="z-index: 99; position: fixed; top: 0px; right: 0px; bottom: 0px; left: 0px; opacity: 0; visibility: hidden; transition: -webkit-opacity 0.3s ease-out; background-color: rgba(0, 0, 0, 0.5);"></div>
+        <div id="takePic" role="presentation" tabindex="0" style="z-index: 98; position: fixed; top: 0px; right: 0px; bottom: 0px; left: 0px; opacity: 1; background-image: url(assets/images/takePic.jpg);">
+          
+        </div>
+        <div class="cabinet-sidebar">
+            <ul class="cabinet-menu">
+                <li class="active">
+                    <a href="#home">
+                        <i class="glyphicon-custom glyphicon glyphicon-home"></i>
+                    </a>
+                </li>
+                <li>
+                    <a id="search">
+                        <i class="glyphicon-custom glyphicon glyphicon-search"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#upload">
+                        <i class="glyphicon-custom glyphicon glyphicon-camera"></i>
+                    </a>
+                    <input type="text" name="">
+                </li>
+                <li>
+                    <a href="#notification" style="position: relative">
+                      <p class="notification-icon">2</p>
+                        <i class="glyphicon-custom glyphicon glyphicon-thumbs-up" style="font-size: 1.4em">
+                        </i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#profile">
+                        <i class="glyphicon-custom glyphicon glyphicon-user"></i>
+                    </a>
+                </li>
+                <li>
+                    <a id="logout">
+                        <i class="glyphicon-custom glyphicon glyphicon-off"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="assets/scripts/swipeable.js"></script>
+    <script src="assets/scripts/app.js"></script>
+    <script src="assets/scripts/imageSizeControl.js"></script>
+    <script src="assets/scripts/datePicker.js"></script>
+    <script src="assets/scripts/userActions/likeAction.js"></script>
+</body>
 </html>

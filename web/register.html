@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>We Share</title>
+    <link rel="icon" href="assets/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css">
+    <script src="assets/scripts/jquery-1.10.2.min.js"></script>
+    <script src="assets/scripts/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
+</head>
+<body onload="focusToTxtBox()">
+    <div class="navbar navbar-fixed-top">
+        <div class="container-fluid">
+        <div class="col-md-7 col-md-offset-2">
+            <div id="nav-head" class="navbar-header">
+                <b>WeShare</b>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="mp-cabinet" style="padding-top: 70px">
+        <img class="background" src="assets/images/background.jpg">
+        <div class="container top-container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="sign-in-panel panel panel-default">
+                        <div class="panel-body">
+                            <form novalidate class="form-vertical" action="home.html" method="post">
+                                <legend class="col-md-offset-2 register-legend" style="padding-left: 5px; border: 0"><b>Would you like to Share?</b></legend>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-group-addon-custom">
+                                            <i class="glyphicon-custom glyphicon glyphicon-user" aria-hidden="true"></i>
+                                        </span>
+                                        <input type="text" id="txt_Username" placeholder="Let's share your username" class="form-control form-control-custom" aria-describedby="helpblock_Username" name="txt_Username">
+                                    </div>
+                                    <span id="helpblock_Username" class="help-block hidden" style="color:red">Tên đăng nhập có độ dài từ 6-64 ký tự, không có khoảng trắng ở giữa và không được bắt đầu hoặc kết thúc bằng ký hiệu(@@",!...).</span>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-group-addon-custom">
+                                            <i class="glyphicon-custom glyphicon glyphicon-lock" aria-hidden="true"></i>
+                                        </span>
+                                        <input type="password" id="txt_Password" class="form-control form-control-custom" placeholder="Let's NOT share your password" aria-describedby="helpblock_Password" name="txt_Password">
+                                    </div>
+                                    <span id="helpblock_Password" class="help-block hidden" style="color:red">Mật khẩu có độ dài ít nhất 8 ký tự, yêu cầu bao gồm cả chữ số và ký tự để đảm bảo mức độ bảo mật, không được bắt đầu hoặc kết thúc bằng khoảng trắng.</span>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-group-addon-custom">
+                                            <i class="glyphicon-custom glyphicon glyphicon-lock" aria-hidden="true"></i>
+                                        </span>
+                                        <input type="password" id="txt_Confirm" class="form-control form-control-custom" placeholder="Confirm again please" aria-describedby="helpblock_Confirm" name="txt_Confirm">
+                                    </div>
+                                    <span id="helpblock_Confirm" class="help-block hidden" style="color:red">Mật khẩu không trùng khớp.</span>
+                                </div>
+                                <div class="row">
+                                    <div class="login-link" style="margin-left: 10px">
+                                        <a href="login.html" style="color: black"><b>You have WeShare account already?</b></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <button class="btn btn-primary col-md-6 col-md-offset-3" id="btn_Register" style="margin-top: 10px">Đăng Ký</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function focusToTxtBox() {
+            document.getElementById("txt_Username").focus();
+        }
+
+ 
+    </script>
+</body>
+</html>
