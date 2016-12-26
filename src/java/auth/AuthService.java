@@ -63,6 +63,7 @@ public class AuthService {
         
         return Response
                 .ok()
+                .header("sessionKey", key.toString())
                 .cookie(new NewCookie("sessionKey", key.toString()))
                 .entity(user)
                 .build();
@@ -71,45 +72,21 @@ public class AuthService {
     @POST
     @Path("register")
     @Produces(MediaType.APPLICATION_JSON)
-    @TransactionAttribute(TransactionAttributeType.NEVER)
-    @Consumes({MediaType.APPLICATION_FORM_URLENCODED, MediaType.MULTIPART_FORM_DATA})
-    public Response register(@FormDataParam("username") String username,
-            @FormDataParam("displayName") String displayName,
-            @FormDataParam("email") String email,
-            @FormDataParam("phone") String phone,
-            @FormDataParam("password1") String password1,
-            @FormDataParam("password2") String password2,
-            @FormDataParam("avatar") InputStream imageStream,
+    public Response register(@FormParam("username") String username,
+            @FormParam("displayName") String displayName,
+            @FormParam("password") String password,
             @Context HttpServletRequest req) {
 
-        if (password1.isEmpty() || !password1.equals(password2)) {
-            return Response.status(Response.Status.BAD_REQUEST).build();
-        }
 
         User user = new User();
 
         user.setUsername(username);
-        user.setPassword(password1);
+        user.setPassword(password);
         user.setDisplayName(displayName);
-        user.setEmail(email);
-        user.setPhone(phone);
-        
-        try {
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            int read = 0;
-            byte[] bytes = new byte[1024];
-            while ((read = imageStream.read(bytes)) != -1) {
-                out.write(bytes, 0, read);
-            }
-            
-            user.setImage(out.toByteArray());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        
+                
         userBean.create(user);
 
-        return login(username, password1, req);
+        return login(username, password, req);
     }
 
 }

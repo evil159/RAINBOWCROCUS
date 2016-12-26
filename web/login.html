@@ -27,7 +27,7 @@
                 <div class="col-md-6 col-md-offset-3">
                     <div class="sign-in-panel panel panel-default">
                         <div class="panel-body">
-                            <form novalidate class="form-vertical" action="home.html" method="post">
+                            <form novalidate class="form-vertical" onsubmit="return login();">
                                 <legend class="col-md-8 col-md-offset-3" style="font-size:28px; padding-left: 25px; border: 0"><b>Let's WeShare</b></legend>
                                 <div class="form-group">
                                     <div class="input-group">
@@ -53,10 +53,10 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <button  class="btn btn-primary col-md-6 col-md-offset-3" id="btn_Login" style="margin-top: 20px">Đăng Nhập</button>
+                                    <button  class="btn btn-primary col-md-6 col-md-offset-3"  id="btn_Login" style="margin-top: 20px">Login</button>
                                 </div>
                                 <div class="row">
-                                    <input class="btn btn-primary col-md-6 col-md-offset-3" onclick="toRegisterPage();" id="btn_Register" style="margin-top: 10px" value="Đăng Ký"></input>
+                                    <input class="btn btn-primary col-md-6 col-md-offset-3" onclick="toRegisterPage();" id="btn_Register" style="margin-top: 10px" value="Register"></input>
                                 </div>
                             </form>
                         </div>
@@ -67,7 +67,39 @@
     </div>
     <script type="text/javascript">
         function focusToTxtBox() {
-            document.getElementById("txt_Username").focus();
+             document.getElementById("txt_Username").focus()
+        }
+
+        function login() {
+            var request = new XMLHttpRequest();
+            var url = "auth/login";
+            var params = "username=" +
+             document.getElementById("txt_Username").value +
+             "&password=" +
+             document.getElementById("txt_Password").value;
+            
+            request.open("POST", url, true);
+            request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');    
+        
+             request.onload = function() {
+                 if (request.readyState == 4 && request.status == 200) {
+                    sessionStorage.setItem("sessionKey", request.getResponseHeader('sessionKey'));
+                    sessionStorage.setItem("userId", JSON.parse(request.response)['id']);
+                    sessionStorage.setItem("userName", JSON.parse(request.response)['displayName']);
+
+                    document.location.href = "index.html";
+
+                    // alert(request.responseText);
+                 }
+                 if (request.readyState == 4 && request.status == 401) {
+                     alert("Unauthorized");
+                 }
+
+             }
+
+             request.send(params);
+
+             return false;
         }
  
         function toRegisterPage() {

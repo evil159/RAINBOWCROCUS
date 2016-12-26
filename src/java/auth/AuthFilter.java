@@ -12,6 +12,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
@@ -33,8 +34,22 @@ public class AuthFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         
         if (!UserSession.isValid(httpRequest.getHeader("sessionKey"))) {
-            httpResponse.sendError(HttpStatus.UNAUTHORIZED.value(), "Test");
-            return;
+            
+            Cookie[] cookies = httpRequest.getCookies();
+
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals("sessionKey")) {
+                        if (UserSession.isValid(cookie.getValue())) {
+                            chain.doFilter(request, response);
+                            return;
+                        }
+                    }
+                }
+            }
+            
+//            httpResponse.sendError(HttpStatus.UNAUTHORIZED.value(), "Test");
+//            return;
         }
         
         chain.doFilter(request, response);

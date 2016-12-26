@@ -22,7 +22,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
 </head>
-<body>
+<body onload="onLoad()">
     <div class="navbar navbar-fixed-top">
         <div class="container-fluid">
         <div class="col-md-7 col-md-offset-2">
@@ -45,11 +45,11 @@
         <div style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; overflow: auto; transition: -webkit-left 0.3s ease-out, right 0.3s ease-out">
             <div class="mp-cabinet" style="padding-top: 70px">
                 <img class="background" src="assets/images/background.jpg">
-                <div class="btn-take-picture-container">
+                <!--<div class="btn-take-picture-container">
                   <div id="left-line" style="height: 5px;width: 247px; background-color: #23ede9; float: left; margin-top: 35.5px"></div>
                   <div id="right-line" style="height: 5px;width: 247px; background-color: #23ede9; float: right; margin-top: 35.5px"></div>
                   <div class="btn-take-picture"></div>
-                </div>
+                </div>-->
                 <div class="cabinet-container">
 
 <!--=====================================================
@@ -57,8 +57,8 @@
 =========================================================-->
 
                 <div id="home" class="cabinet-container-item active">
-                  <div class="page-container">
-                      <article>
+                  <div class="page-container" >
+                      <article style="display: none;" id="template">
                           <div class="post-header">
                               <a href="#home">
                                   <i class="glyphicon-custom glyphicon glyphicon-user"></i>
@@ -76,191 +76,14 @@
                                   <img src="assets/images/heart.jpg" style="transition: opacity 0.8s ease-in-out">
                               </div>
                           </div>
-                          <div class="post-footer">
+                          <div hidden class="post-footer">
                               <div>
                                   <img src="assets/images/heart_empty.png" height="25px" onclick="this.src='assets/images/heart_fill.png'"/>
                                   <span>6.9k likes</span>
                                   <p><b>superstar123</b> Why is this a heart?</p>
                                   <p><b>superstar123</b> And why did 6.9k ppl like this?</p>
                               </div>
-                              <form action="#" method="POST">
-                                  <textarea name="cmtbox" style="width: 85%; float:left;">Your comment</textarea>
-                                  <i class="glyphicon glyphicon-send"></i>
-                              </form>
-                          </div>
-                      </article>
-
-                      <article>
-                          <div class="post-header">
-                              <a href="#home">
-                                  <i class="glyphicon-custom glyphicon glyphicon-user"></i>
-                                  <span class="username" style="padding-bottom: 10px;"><b>superstar123</b></span>
-                              </a>
-                              <div class="post-time">
-                                  <span>3h ago</span>
-                              </div>
-                          </div>
-                          <div class="post-body">
-                              <div class="post-caption">
-                                  <span>Audi A7...4 more years</span>
-                              </div>
-                              <div class="post-image-container">
-                                  <img src="assets/images/photo4.jpg">
-                              </div>
-                          </div>
-                          <div class="post-footer">
-                              <div>
-                                  <img src="assets/images/heart_empty.png" height="25px" onclick="this.src='assets/images/heart_fill.png'"/>
-                                  <span>4.6k likes</span>
-                                  <p><b>liam1208</b> This picture looks familiar</p>
-                                  <p><b>superstar123</b> Probably because you've seen this a million times.</p>
-                              </div>
-                              <form action="#" method="POST">
-                                  <textarea name="cmtbox" style="width: 85%; float:left;">Your comment</textarea>
-                                  <i class="glyphicon glyphicon-send"></i>
-                              </form>
-                          </div>
-                      </article>
-
-                      <article>
-                          <div class="post-header">
-                              <a href="#home">
-                                  <i class="glyphicon-custom glyphicon glyphicon-user"></i>
-                                  <span class="username" style="padding-bottom: 10px;"><b>melted_elsa</b></span>
-                              </a>
-                              <div class="post-time">
-                                  <span>6h ago</span>
-                              </div>
-                          </div>
-                          <div class="post-body">
-                              <div class="post-caption">
-                                  <span>Mercedes Benz Cls...8 more years</span>
-                              </div>
-                              <div class="post-image-container">
-                                  <img src="assets/images/photo5.jpg">
-                              </div>
-                          </div>
-                          <div class="post-footer">
-                              <div>
-                                  <img src="assets/images/heart_empty.png" height="25px" onclick="this.src='assets/images/heart_fill.png'"/>
-                                  <span>1.6k likes</span>
-                                  <p><b>melted_elsa</b> Chill</p>
-                              </div>
-                              <form action="#" method="POST">
-                                  <textarea name="cmtbox" style="width: 85%; float:left;">Your comment</textarea>
-                                  <i class="glyphicon glyphicon-send"></i>
-                              </form>
-                          </div>
-                      </article>
-
-                      <article>
-                          <div class="post-header">
-                              <a href="#home">
-                                  <i class="glyphicon-custom glyphicon glyphicon-user"></i>
-                                  <span class="username" style="padding-bottom: 10px;"><b>Liam_Nguyen</b></span>
-                              </a>
-                              <div class="post-time">
-                                  <span>12h ago</span>
-                              </div>
-                          </div>
-                          <div class="post-body">
-                              <div class="post-caption">
-                                  <span>Range Rover Sport...maybe later :D</span>
-                              </div>
-                              <div class="post-image-container" style="height: 270px !important">
-                                  <img src="assets/images/photo6.jpeg">
-                              </div>
-                          </div>
-                          <div class="post-footer">
-                              <div>
-                                  <img src="assets/images/heart_empty.png" height="25px" onclick="this.src='assets/images/heart_fill.png'"/>
-                                  <span>10.2k likes</span>
-                                  <p><b>roman_evil</b> Good luck ;)</p>
-                              </div>
-                              <form action="#" method="POST">
-                                  <textarea name="cmtbox" style="width: 85%; float:left;">Your comment</textarea>
-                                  <i class="glyphicon glyphicon-send"></i>
-                              </form>
-                          </div>
-                      </article>
-
-                      <article>
-                          <div class="post-header">
-                              <a href="#home">
-                                  <i class="glyphicon-custom glyphicon glyphicon-user"></i>
-                                  <span class="username" style="padding-bottom: 10px;"><b>John Smith</b></span>
-                              </a>
-                              <div class="post-time">
-                                  <span>1d ago</span>
-                              </div>
-                          </div>
-                          <div class="post-body">
-                              <div class="post-caption">
-                                  <span>Home :]</span>
-                              </div>
-                              <div class="post-image-container" style="height: 270px !important">
-                                  <img src="assets/images/photo7.jpg">
-                              </div>
-                          </div>
-                          <div class="post-footer">
-                              <div>
-                                  <img src="assets/images/heart_empty.png" height="25px" onclick="this.src='assets/images/heart_fill.png'"/>
-                                  <span>7.2b likes</span>
-                                  <p><b>earthling</b> Wow! Beautiful.</p>
-                              </div>
-                              <form action="#" method="POST">
-                                  <textarea name="cmtbox" style="width: 85%; float:left;">Your comment</textarea>
-                                  <i class="glyphicon glyphicon-send"></i>
-                              </form>
-                          </div>
-                      </article>
-
-                      <article>
-                          <div class="post-header">
-                              <a href="#home">
-                                  <i class="glyphicon-custom glyphicon glyphicon-user"></i>
-                                  <span class="username" style="padding-bottom: 10px;"><b>Timoteus Aelius</b></span>
-                              </a>
-                              <div class="post-time">
-                                  <span>1d ago</span>
-                              </div>
-                          </div>
-                          <div class="post-body">
-                              <div class="post-caption">
-                                  <span>An elephant</span>
-                              </div>
-                              <div class="post-image-container" style="height: 270px !important">
-                                  <img src="assets/images/photo8.jpg">
-                              </div>
-                          </div>
-                          <div class="post-footer">
-                              <form action="#" method="POST">
-                                  <textarea name="cmtbox" style="width: 85%; float:left;">Your comment</textarea>
-                                  <i class="glyphicon glyphicon-send"></i>
-                              </form>
-                          </div>
-                      </article>
-
-                      <article>
-                          <div class="post-header">
-                              <a href="#home">
-                                  <i class="glyphicon-custom glyphicon glyphicon-user"></i>
-                                  <span class="username" style="padding-bottom: 10px;"><b>Hildefons Severus</b></span>
-                              </a>
-                              <div class="post-time">
-                                  <span>2d ago</span>
-                              </div>
-                          </div>
-                          <div class="post-body">
-                              <div class="post-caption">
-                                  <span>Moody</span>
-                              </div>
-                              <div class="post-image-container" style="height: 270px !important">
-                                  <img src="assets/images/photo9.jpg">
-                              </div>
-                          </div>
-                          <div class="post-footer">
-                              <form action="#" method="POST">
+                              <form hidden action="#" method="POST">
                                   <textarea name="cmtbox" style="width: 85%; float:left;">Your comment</textarea>
                                   <i class="glyphicon glyphicon-send"></i>
                               </form>
@@ -428,18 +251,18 @@
                         <i class="glyphicon-custom glyphicon glyphicon-home"></i>
                     </a>
                 </li>
-                <li>
+                <!--<li>
                     <a id="search">
                         <i class="glyphicon-custom glyphicon glyphicon-search"></i>
                     </a>
-                </li>
+                </li>-->
                 <li>
-                    <a href="#upload">
+                    <a href="#upload" id="upload_button">
                         <i class="glyphicon-custom glyphicon glyphicon-camera"></i>
                     </a>
                     <input type="text" name="">
                 </li>
-                <li>
+                <!--<li>
                     <a href="#notification" style="position: relative">
                       <p class="notification-icon">2</p>
                         <i class="glyphicon-custom glyphicon glyphicon-thumbs-up" style="font-size: 1.4em">
@@ -450,7 +273,7 @@
                     <a href="#profile">
                         <i class="glyphicon-custom glyphicon glyphicon-user"></i>
                     </a>
-                </li>
+                </li>-->
                 <li>
                     <a id="logout">
                         <i class="glyphicon-custom glyphicon glyphicon-off"></i>
@@ -459,6 +282,61 @@
             </ul>
         </div>
     </div>
+    <script type="text/javascript">
+        function onLoad() {
+
+            document.getElementById('upload_button').onclick = function() {
+                                document.location.href = "post.html";
+            };
+            var userId = sessionStorage.getItem("userId");
+            var userName = sessionStorage.getItem("userName");
+            var sessionKey = sessionStorage.getItem("sessionKey");
+
+            if (sessionKey == null) {
+                document.location.href = "login.html";
+                return;
+            }
+
+            var request = new XMLHttpRequest();
+            var url = "rest/model.post/user/" + userId;
+            
+            request.open("GET", url, true);
+            request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');    
+            request.setRequestHeader('sessionKey', sessionKey);    
+
+             request.onload = function() {
+                 if (request.readyState == 4 && request.status == 200) {
+                    var posts = JSON.parse(request.response);
+                    
+                   for (var i in posts) {
+                    var post = posts[i];
+                     var container = document.getElementsByClassName("page-container")[0];
+                     var template = document.getElementById("template");
+                     var clone = template.cloneNode(true);
+                    
+                    clone.style.display = "block";
+                     clone.getElementsByClassName("post-time")[0].textContent = post.created;
+                     clone.getElementsByClassName("username")[0].textContent = userName;
+                                           
+                     clone.getElementsByClassName("post-caption")[0].textContent = post.caption;
+                     clone.getElementsByClassName("post-image-container")[0].children[0].src = "data:image/png;base64, " + post.image;
+
+                     container.insertBefore(clone, container.firstChild);
+                   }
+                    
+                    // alert(request.responseText);
+                 }
+
+                 if (request.readyState == 4 && request.status == 401) {
+                   //document.location.href = "login.html";
+                   //                     alert("Unauthorized");
+                 }
+
+             }
+
+        request.send();
+    }
+    </script>
     <script src="assets/scripts/swipeable.js"></script>
     <script src="assets/scripts/app.js"></script>
     <script src="assets/scripts/imageSizeControl.js"></script>

@@ -27,16 +27,24 @@
                 <div class="col-md-6 col-md-offset-3">
                     <div class="sign-in-panel panel panel-default">
                         <div class="panel-body">
-                            <form novalidate class="form-vertical" action="home.html" method="post">
+                            <form novalidate class="form-vertical" onsubmit="return register();" method="post">
                                 <legend class="col-md-offset-2 register-legend" style="padding-left: 5px; border: 0"><b>Would you like to Share?</b></legend>
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon input-group-addon-custom">
                                             <i class="glyphicon-custom glyphicon glyphicon-user" aria-hidden="true"></i>
                                         </span>
-                                        <input type="text" id="txt_Username" placeholder="Let's share your username" class="form-control form-control-custom" aria-describedby="helpblock_Username" name="txt_Username">
+                                        <input type="text" id="txt_Username" placeholder="Username" class="form-control form-control-custom" aria-describedby="helpblock_Username" name="txt_Username">
                                     </div>
                                     <span id="helpblock_Username" class="help-block hidden" style="color:red">Tên đăng nhập có độ dài từ 6-64 ký tự, không có khoảng trắng ở giữa và không được bắt đầu hoặc kết thúc bằng ký hiệu(@@",!...).</span>
+                                </div>
+                                                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-group-addon-custom">
+                                            <i class="glyphicon-custom glyphicon glyphicon-user" aria-hidden="true"></i>
+                                        </span>
+                                        <input type="text" id="txt_Displayname" placeholder="Display name" class="form-control form-control-custom" name="txt_Displayname">
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group">
@@ -62,7 +70,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <button class="btn btn-primary col-md-6 col-md-offset-3" id="btn_Register" style="margin-top: 10px">Đăng Ký</button>
+                                    <button class="btn btn-primary col-md-6 col-md-offset-3" id="btn_Register" style="margin-top: 10px">Register</button>
                                 </div>
                             </form>
                         </div>
@@ -76,7 +84,49 @@
             document.getElementById("txt_Username").focus();
         }
 
+         function register() {
+            var pass = document.getElementById("txt_Password").value
+            var pass1 = document.getElementById("txt_Confirm").value
+
+            if (pass != pass1) {
+                alert("Passwords does not match!")
+                return false;
+            }
+
+            var request = new XMLHttpRequest();
+            var url = "auth/register";
+                        var params = "username=" +
+             document.getElementById("txt_Username").value +
+             "&displayName=" + 
+            document.getElementById("txt_Displayname").value +
+             "&password=" +
+             document.getElementById("txt_Password").value;
+
+            request.open("POST", url, true);
+            request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');    
+        
+             request.onload = function() {
+                 if (request.readyState == 4 && request.status == 200) {
+                    sessionStorage.setItem("sessionKey", request.getResponseHeader('sessionKey'));
+                    sessionStorage.setItem("userId", JSON.parse(request.response)['id']);
+                    sessionStorage.setItem("userName", JSON.parse(request.response)['displayName']);
+
+                    document.location.href = "index.html";
+
+                    // alert(request.responseText);
+                 }
+                 if (request.readyState == 4 && request.status == 401) {
+                     alert("Unauthorized");
+                 }
+
+             }
+
+             request.send(params);
+
+             return false;
+        }
  
+
     </script>
 </body>
 </html>

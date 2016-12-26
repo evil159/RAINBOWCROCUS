@@ -22,7 +22,7 @@ var presentation = document.getElementById('presentation'),
 
         $('.cabinet-sidebar .cabinet-menu li a#search').on('click', function(e)  {
 
-        }
+        });
 
         $('.name-container').on('click', function(e) {
             $('.cabinet-container #edit-profile').show().siblings().hide();
